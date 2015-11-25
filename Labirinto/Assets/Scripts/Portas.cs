@@ -3,29 +3,33 @@ using System.Collections;
 
 public class Portas : MonoBehaviour {
 	private float alturaInicial;
-	private float alturaFinal;
-	private int totalFrames;
+	public float alturaFinal;
 	private Transform meuTransform;
-	public float tempo;
-	public float tempoSubirDescer;
-	public int subirDescer;
+	private float tempo;
+	private float tempoSubirDescer;
+	private int subirDescer;
 	public int segundosFechada;
 	public int segundosLevantada;
-	public float positiony;
-
+//	public float positiony;
+//	public float aumentandoporzeroum;
+	private int contantbug;
+	public float segundosDescer;
+	public float segundosSubir;
 
 	// Use this for initialization
 	void Start () {
 		meuTransform = this.GetComponent<Transform>();
+		segundosSubir = 4f;
+		segundosDescer = 0.5f;
 		alturaInicial = meuTransform.position.y;
 		alturaFinal = 8.8f;
-		totalFrames = 40;
 		subirDescer = 0;
+		contantbug = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		positiony = meuTransform.position.y;
+//		positiony = meuTransform.position.y;
 
 		tempo += Time.deltaTime;
 		tempoSubirDescer += Time.deltaTime;
@@ -38,9 +42,9 @@ public class Portas : MonoBehaviour {
 
 		if(subirDescer == 1){
 			if(meuTransform.position.y < alturaFinal){
-				Debug.Log("passei aqui y = " + meuTransform.position.y+ " altura final = "+alturaFinal);
+//				Debug.Log("passei aqui y = " + meuTransform.position.y+ " altura final = "+alturaFinal);
 				if(tempo >= 0.1){
-					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y + (alturaFinal - alturaInicial)/totalFrames, meuTransform.position.z);
+					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y + (alturaFinal - alturaInicial)/(segundosSubir/0.1f), meuTransform.position.z);
 					tempo = 0;
 				}
 			}else{
@@ -49,14 +53,22 @@ public class Portas : MonoBehaviour {
 		}else if(subirDescer == -1){
 			if(meuTransform.position.y > alturaInicial){
 				if(tempo >= 0.1){
-					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y - (alturaFinal - alturaInicial)/(totalFrames/8), meuTransform.position.z);
+//					Debug.Log("Passei aqui:" + meuTransform.position.y +" "+alturaInicial);
+					if(contantbug < ((segundosDescer/0.1f) - 1)){
+						meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y - (alturaFinal - alturaInicial)/(segundosDescer/0.1f), meuTransform.position.z);
+					}else{
+						meuTransform.position = new Vector3(meuTransform.position.x, alturaInicial, meuTransform.position.z);
+					}
 					tempo = 0;
+					contantbug++;
+//					Debug.Log("Sai aqui:" + meuTransform.position.y +" "+alturaInicial);
 				}
 				this.GetComponent<Collider>().isTrigger = true;
 			}else{
 				subirDescer = 0;
 				tempoSubirDescer = 0;
 				this.GetComponent<Collider>().isTrigger = false;
+				contantbug = 0;
 			}
 		}
 
