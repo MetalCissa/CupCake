@@ -6,23 +6,25 @@ public class Portas : MonoBehaviour {
 	private float alturaFinal;
 	private int totalFrames;
 	private Transform meuTransform;
-	public float tempo;
-	public float tempoSubirDescer;
-	public int subirDescer;
+	private float tempo;
+	private float tempoSubirDescer;
+	private int subirDescer;
 	public int segundosFechada;
 	public int segundosLevantada;
+
 
 	// Use this for initialization
 	void Start () {
 		meuTransform = this.GetComponent<Transform>();
 		alturaInicial = meuTransform.position.y;
-		alturaFinal = 8.6f;
+		alturaFinal = 8.8f;
 		totalFrames = 40;
 		subirDescer = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	
 
 		tempo += Time.deltaTime;
 		tempoSubirDescer += Time.deltaTime;
@@ -45,7 +47,7 @@ public class Portas : MonoBehaviour {
 		}else if(subirDescer == -1){
 			if(meuTransform.position.y > alturaInicial){
 				if(tempo >= 0.1){
-					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y - (alturaFinal - alturaInicial)/(totalFrames/2), meuTransform.position.z);
+					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y - (alturaFinal - alturaInicial)/(totalFrames/8), meuTransform.position.z);
 					tempo = 0;
 				}
 			}else{
@@ -57,5 +59,11 @@ public class Portas : MonoBehaviour {
 
 
 	
+	}
+
+	void OnTriggerEnter(Collider other ){
+		if (other.gameObject.tag == "Player") {
+			other.GetComponent<Transform> ().position = new Vector3 (-4.38f, 6.52f, 12.38f);
+		}
 	}
 }
