@@ -6,11 +6,12 @@ public class Portas : MonoBehaviour {
 	private float alturaFinal;
 	private int totalFrames;
 	private Transform meuTransform;
-	private float tempo;
-	private float tempoSubirDescer;
-	private int subirDescer;
+	public float tempo;
+	public float tempoSubirDescer;
+	public int subirDescer;
 	public int segundosFechada;
 	public int segundosLevantada;
+	public float positiony;
 
 
 	// Use this for initialization
@@ -24,7 +25,7 @@ public class Portas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		positiony = meuTransform.position.y;
 
 		tempo += Time.deltaTime;
 		tempoSubirDescer += Time.deltaTime;
@@ -37,6 +38,7 @@ public class Portas : MonoBehaviour {
 
 		if(subirDescer == 1){
 			if(meuTransform.position.y < alturaFinal){
+				Debug.Log("passei aqui y = " + meuTransform.position.y+ " altura final = "+alturaFinal);
 				if(tempo >= 0.1){
 					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y + (alturaFinal - alturaInicial)/totalFrames, meuTransform.position.z);
 					tempo = 0;
@@ -50,9 +52,11 @@ public class Portas : MonoBehaviour {
 					meuTransform.position = new Vector3(meuTransform.position.x, meuTransform.position.y - (alturaFinal - alturaInicial)/(totalFrames/8), meuTransform.position.z);
 					tempo = 0;
 				}
+				this.GetComponent<Collider>().isTrigger = true;
 			}else{
 				subirDescer = 0;
 				tempoSubirDescer = 0;
+				this.GetComponent<Collider>().isTrigger = false;
 			}
 		}
 
