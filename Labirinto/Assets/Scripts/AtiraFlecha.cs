@@ -13,9 +13,8 @@ public class AtiraFlecha : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		tempo += Time.deltaTime;
-		if(tempo >= 0.1){
-			GameObject t = Instantiate(flecha, this.GetComponent<Transform>().position, Quaternion.identity) as GameObject;
-			GameObject.Destroy(t,2);
+		if(tempo >= 5){
+			GameObject flechas = Instantiate(flecha, this.GetComponent<Transform>().position, Quaternion.identity) as GameObject;
 			tempo = 0;
 		}
 	}

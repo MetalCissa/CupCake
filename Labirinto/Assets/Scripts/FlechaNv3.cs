@@ -16,9 +16,9 @@ public class FlechaNv3 : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
 			other.GetComponent<Transform> ().position = new Vector3 (-4.38f, 6.52f, 12.38f);
-			Destroy(this);
+			Destroy(this.gameObject);
 		}else if(other.gameObject.tag == "Parede nv 4"){
-			Destroy(this);
+			Destroy(this.gameObject);
 		}
 	}
 
