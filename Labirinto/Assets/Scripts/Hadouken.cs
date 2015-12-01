@@ -16,10 +16,11 @@ public class Hadouken : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Caveira") {
+        //Debug.Log(other.gameObject.tag);
+        if (other.gameObject.tag == "Caveira") {
 			Destroy (other.gameObject);
 		}
-		if (!(other.gameObject.tag == "Player")) {
+		if (!(other.gameObject.tag == "Player") && !(other.gameObject.tag == "Untagged")) {
 			Destroy (this.gameObject);
 		}
 	

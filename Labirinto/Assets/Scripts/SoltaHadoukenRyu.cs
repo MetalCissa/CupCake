@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class SoltaHadoukenRyu : MonoBehaviour {
-	private bool podeSoltar;
+	public bool podeSoltar;
 	public GameObject poder;
 	public Transform posicao;
-	private float tempo;
+	public float tempo;
 	
 	// Use this for initialization
 	void Start () {

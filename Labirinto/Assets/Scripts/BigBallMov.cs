@@ -15,8 +15,7 @@ public class BigBallMov : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (this.gameObject.activeSelf) {
-			Debug.Log("to aqui");
-			rb.AddForce (new Vector3 (0f, 0f, 3f));
+			rb.AddForce (new Vector3 (0f, 0f, 0.5f));
 			if (diminuirBola) {
 				Vector3 currentScale = this.transform.localScale;
 				currentScale.x -= 0.002f;
