@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AudioManagement : MonoBehaviour {
+public class AudioAndar : MonoBehaviour {
 
 	public AudioClip audioClip;
 
